@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
  && apt-get clean \
  && rm -rf /tmp/* /var/lib/apt/lists/* /var/cache/debconf/*-old \
  && pip3 install watchdog
+ && apt-get update
+ && apt-get install -y -q clamav
 
 EXPOSE 25 143 465 587 993 4190 11334
 COPY rootfs /
