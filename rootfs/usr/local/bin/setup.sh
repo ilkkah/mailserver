@@ -55,7 +55,10 @@ KEYFILE=/ssl/privkey.pem
 
 # Add domains from ENV DOMAIN and ADD_DOMAINS
 domains=(${DOMAIN})
-domains+=(${ADD_DOMAINS//,/ })
+domains+=(${ADD_DOMAINS//,/ })  
+
+old_umask=$(umask)
+umask 002
 
 for domain in "${domains[@]}"; do
 
@@ -86,6 +89,8 @@ for domain in "${domains[@]}"; do
   fi
 
 done
+
+umask $old_umask
 
 # LDAP SUPPORT
 # ---------------------------------------------------------------------------------------------

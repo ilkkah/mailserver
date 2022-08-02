@@ -138,8 +138,11 @@ certs_helper.sh update_certs
 
 # Make sure that configuration is only run once
 if [ ! -f "/etc/configuration_built" ]; then
+  echo "[INFO] /etc/configuration_built not found - running setup.sh"
   touch "/etc/configuration_built"
   setup.sh
+else
+  echo "[INFO] /etc/configuration_built found - won't run setup.sh"
 fi
 
 # Unrecoverable errors detection
